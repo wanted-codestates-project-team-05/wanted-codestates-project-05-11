@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import MainHeader from './MainHeader.vue';
 import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
+import MainHeader from './MainHeader.vue';
 
 export default {
   name: 'home-page',

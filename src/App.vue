@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <HomePage />
+    <home-page />
     <PentagonChart />
   </div>
 </template>
 
 <script>
 import PentagonChart from './components/pentagon/PentagonChart.vue';
+import HomePage from './components/home/HomePage.vue';
 
 export default {
   name: 'App',
   components: {
+    HomePage,
     PentagonChart,
   },
 };
