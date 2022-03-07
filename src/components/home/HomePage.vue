@@ -12,7 +12,7 @@ import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 
 export default {
-  name: 'main-Home',
+  name: 'home-page',
   components: {
     MainHeader,
     SearchInput,
