@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HomePage />
+    <PentagonChart />
   </div>
 </template>
 
 <script>
-import HomePage from './components/home/HomePage.vue';
+import PentagonChart from './components/pentagon/PentagonChart.vue';
 
 export default {
   name: 'App',
   components: {
-    HomePage,
+    PentagonChart,
   },
 };
 </script>
