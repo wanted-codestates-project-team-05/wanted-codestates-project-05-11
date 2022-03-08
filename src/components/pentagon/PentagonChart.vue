@@ -1,5 +1,6 @@
 <script>
 import { Radar } from 'vue-chartjs';
+import user from '../../assets/user.json';
 export default {
   name: 'PentagonChart',
   extends: Radar,
@@ -95,6 +96,9 @@ export default {
         },
         legend: {
           position: 'bottom',
+        },
+        tooltips: {
+          enabled: false,
         },
       }
     );
