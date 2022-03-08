@@ -9,14 +9,14 @@ export default {
     graphViewType: String,
   },
   mounted() {
-    this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
+    this.renderChart(this.changeDataFormat(this.chartData, this.graphViewType), this.options);
   },
   watch: {
     companyName() {
-      this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
+      this.renderChart(this.changeDataFormat(this.chartData, this.graphViewType), this.options);
     },
     graphViewType() {
-      this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
+      this.renderChart(this.changeDataFormat(this.chartData, this.graphViewType), this.options);
     },
   },
   data() {
@@ -66,7 +66,7 @@ export default {
     };
   },
   methods: {
-    getData(chartData, graphViewType) {
+    changeDataFormat(chartData, graphViewType) {
       const makeGraphData = (data, maxScore) => {
         return Object.values(data).map((score) =>
           score >= maxScore / 2 || score === 0 ? score * -1 : maxScore - score
