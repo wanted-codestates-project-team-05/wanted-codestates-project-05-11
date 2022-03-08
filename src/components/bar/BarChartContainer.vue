@@ -50,7 +50,6 @@ export default {
     companyName: function () {
       this.selectedCompanyName = this.companyName;
       this.chartData = { ...this.chartData, companyData: this.companyData };
-      console.log(this.companyData, 'barChartContainer');
     },
     viewType: function () {
       this.graphViewType = this.viewType;

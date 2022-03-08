@@ -245,7 +245,7 @@ export default {
         },
       },
       userData: userData.user,
-      selectedCompany: companyDataJson['KAKAO'],
+      selectedCompany: {},
       companyDataJson,
       viewType: 'isAll',
     };

@@ -14,7 +14,6 @@ export default {
   watch: {
     companyName() {
       this.renderChart(this.getData(this.chartData), this.options, this.companyName);
-      console.log('chart', this.chartData);
     },
     graphViewType() {
       this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
