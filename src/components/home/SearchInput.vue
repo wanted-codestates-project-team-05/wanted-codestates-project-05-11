@@ -29,6 +29,12 @@ export default {
   methods: {
     updateinput: function ($e) {
       if (!$e.target.value) return;
+      if ($e.target.value === '카카오') {
+        this.$emit('keyup.enter', 'KAKAO');
+      }
+      if ($e.target.value === '삼성') {
+        this.$emit('keyup.enter', 'SAMSUNG');
+      }
       if (!Object.keys(this.companyData).includes($e.target.value.toUpperCase())) {
         alert('기업을 찾을 수 없습니다.');
       } else {
