@@ -6,13 +6,17 @@ export default {
   mixins: [mixins.reactiveProp],
   props: {
     chartData: Object,
+    tap: Object,
   },
   mounted() {
-    this.renderChart(this.getData(this.chartData), this.options);
+    this.renderChart(this.getData(this.chartData, this.tap), this.options);
   },
   watch: {
     chartData() {
-      this.getData(this.chartData);
+      this.getData(this.chartData, this.tap);
+    },
+    tap() {
+      console.log(this.tab);
     },
   },
   data() {
@@ -62,13 +66,15 @@ export default {
     };
   },
   methods: {
-    getData(chartData) {
+    getData(chartData, tab) {
       const makeGraphData = (data, maxScore) => {
         return Object.values(data).map((score) =>
           score >= maxScore / 2 || score === 0 ? score * -1 : maxScore - score
         );
       };
-      const userGraphData = chartData.userData && makeGraphData(chartData.userData, chartData.maxScore);
+
+      const userGraphData =
+        tab.isAll === true ? chartData.userData && makeGraphData(chartData.userData, chartData.maxScore) : null;
       const companyGraphData = chartData.companyData && makeGraphData(chartData.companyData, chartData.maxScore);
       const data = {
         labels: ['type1', 'type2', 'type3', 'type4', 'type5'],

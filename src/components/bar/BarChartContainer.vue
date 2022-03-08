@@ -25,7 +25,7 @@
           >
         </span>
       </li>
-      <BarChart class="Chart" v-bind:chart-data="chartData" />
+      <BarChart class="Chart" v-bind:chart-data="chartData" :tap="this.tap" />
     </ul>
   </div>
 </template>
@@ -43,6 +43,9 @@ export default {
   props: {
     userDataProps: Object,
     companyData: Object,
+    isAll: Boolean,
+    isMe: Boolean,
+    isCompany: Boolean,
   },
   watch: {
     companyData: function () {
@@ -50,8 +53,12 @@ export default {
       console.log(this.selectedCompany, 'barChartContainer');
     },
   },
+  mounted() {
+    console.log(this.tap);
+  },
   data() {
     return {
+      tap: { isAll: this.isAll, isMe: this.isMe, isCompany: this.isCompany },
       MAX_SCORE,
       personalityType: [
         ['적극성', '수동성'],
