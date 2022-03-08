@@ -31,7 +31,7 @@ import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
 import BarChartContainer from '@/components/bar/BarChartContainer';
-import companyData from '../../assets/company.json';
+import companyDataJson from '../../assets/company.json';
 import userData from '../../assets/user.json';
 
 export default {
@@ -83,6 +83,12 @@ export default {
         datasets: [this.companyData],
       };
       this.chartData.datasets[0].data = [2, 7, 4, 8, 9];
+    },
+  },
+  watch: {
+    companyName: function () {
+      this.selectedCompany = this.companyDataJson['KAKAO'];
+      console.log(this.selectedCompany, 'home');
     },
   },
   data() {
@@ -217,7 +223,8 @@ export default {
         },
       },
       userData: userData.user,
-      selectedCompany: companyData['KAKAO'],
+      selectedCompany: companyDataJson['KAKAO'],
+      companyDataJson,
     };
   },
 };

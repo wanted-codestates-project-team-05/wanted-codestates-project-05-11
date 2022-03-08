@@ -4,8 +4,16 @@ import { HorizontalBar, mixins } from 'vue-chartjs';
 export default {
   extends: HorizontalBar,
   mixins: [mixins.reactiveProp],
+  props: {
+    chartData: Object,
+  },
   mounted() {
     this.renderChart(this.getData(this.chartData), this.options);
+  },
+  watch: {
+    chartData() {
+      this.getData(this.chartData);
+    },
   },
   data() {
     return {
