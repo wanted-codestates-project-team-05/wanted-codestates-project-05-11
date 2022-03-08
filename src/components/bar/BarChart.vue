@@ -5,13 +5,10 @@ export default {
   extends: HorizontalBar,
   mixins: [mixins.reactiveProp],
   props: {
-    userData: Object,
-    companyData: Object,
     chartData: Object,
-    maxScore: Number,
   },
   mounted() {
-    this.renderChart(this.getData(this.userData, this.companyData, this.maxScore), this.options, this.chartData);
+    this.renderChart(this.getData(this.chartData), this.options);
   },
   data() {
     return {
@@ -21,6 +18,8 @@ export default {
         legend: {
           display: false,
         },
+        tooltips: { enabled: false },
+        hover: { mode: null },
         scales: {
           yAxes: [
             {
@@ -58,14 +57,14 @@ export default {
     };
   },
   methods: {
-    getData(userData, companyData, maxScore) {
+    getData(chartData) {
       const makeGraphData = (data, maxScore) => {
         return Object.values(data).map((score) =>
           score >= maxScore / 2 || score === 0 ? score * -1 : maxScore - score
         );
       };
-      const userGraphData = userData && makeGraphData(userData, maxScore);
-      const companyGraphData = companyData && makeGraphData(companyData, maxScore);
+      const userGraphData = chartData.userData && makeGraphData(chartData.userData, chartData.maxScore);
+      const companyGraphData = chartData.companyData && makeGraphData(chartData.companyData, chartData.maxScore);
       const data = {
         labels: ['type1', 'type2', 'type3', 'type4', 'type5'],
         datasets: [

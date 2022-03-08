@@ -25,19 +25,15 @@
           >
         </span>
       </li>
-      <BarChart
-        class="Chart"
-        :chart-data="data"
-        :user-data="userData"
-        :company-data="selectedCompany"
-        :max-score="MAX_SCORE"
-      />
+      <BarChart class="Chart" :chart-data="chartData" />
     </ul>
   </div>
 </template>
 
 <script>
 import BarChart from './BarChart.vue';
+
+const MAX_SCORE = 10;
 
 export default {
   name: 'BarChartContainer',
@@ -50,7 +46,7 @@ export default {
   },
   data() {
     return {
-      MAX_SCORE: 10,
+      MAX_SCORE,
       personalityType: [
         ['적극성', '수동성'],
         ['자신감', '신중함'],
@@ -60,11 +56,10 @@ export default {
       ],
       userData: this.userDataProps,
       selectedCompany: this.companyData,
-      data: { userData: this.userDataProps, companyData: this.selectedCompany },
+      chartData: { userData: this.userDataProps, companyData: this.companyData, maxScore: MAX_SCORE },
       scoreTypes: [...Object.keys(this.userDataProps)],
     };
   },
-  mounted() {},
 };
 </script>
 
