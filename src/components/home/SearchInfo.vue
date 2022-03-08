@@ -3,7 +3,7 @@
     <span id="text">검색 결과</span>
     <div v-if="item">
       <span id="item">{{ item }}</span>
-      <button v-on:click="deleteInput">x</button>
+      <button v-on:click="deleteInput"></button>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 #result {
   display: flex;
   justify-content: space-between;
@@ -35,7 +35,7 @@ export default {
   position: relative;
   font-weight: bold;
   font-size: 16px;
-  line-height: 140%;
+  line-height: 22px;
   color: #727272;
 }
 
@@ -44,7 +44,7 @@ export default {
   position: absolute;
   border: 2px solid #727272;
   background-color: #727272;
-  top: 54%;
+  top: 52%;
   right: -15px;
   border-radius: 10px;
   width: 7px;
@@ -56,7 +56,7 @@ export default {
   position: absolute;
   border: 2px solid #727272;
   background-color: #727272;
-  top: 30%;
+  top: 28%;
   right: -15px;
   border-radius: 10px;
   width: 7px;
@@ -73,13 +73,19 @@ export default {
 #result button {
   width: 16px;
   height: 16px;
+  padding: 0;
   border: none;
   border-radius: 9999px;
   background: #d2d2d2;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#result button::after {
+  display: inline-block;
+  font-size: 15px;
+  content: '\00d7';
 }
 
 #item {

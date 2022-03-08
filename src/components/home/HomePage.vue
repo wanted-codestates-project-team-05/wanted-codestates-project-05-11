@@ -1,8 +1,8 @@
 <template>
   <div id="home">
     <main-header />
-    <search-info v-model="company" />
-    <search-input v-model="company" />
+    <search-info v-model="companyName" />
+    <search-input v-model="companyName" />
     <div class="radar-chart">
       <PentagonChart :chartdata="chartData" :options="options" />
       <div class="bg-img"></div>
@@ -15,7 +15,7 @@
           <img alt="all" src="../../assets/me.png" width="10" height="10" />
           본인
         </button>
-        <button v-bind:class="['button-style', { active: isCompany }]" @click="componyView()">
+        <button v-bind:class="['button-style', { active: isCompany }]" @click="companyView()">
           <img alt="all" src="../../assets/company.png" width="10" height="10" />
           회사
         </button>
@@ -29,7 +29,9 @@ import PentagonChart from '../pentagon/PentagonChart.vue';
 import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
-// import companyData from '../../assets/company.json';
+import company from '../../assets/company.json';
+let companyData;
+let chartScore = [];
 
 export default {
   name: 'HomePage',
@@ -39,7 +41,23 @@ export default {
     SearchInput,
     SearchInfo,
   },
+  props: companyName,
+  watch: {
+    companyName: function () {
+      companyData = this.company[this.companyName];
+      chartScore = [];
+      for (let key in companyData) {
+        chartScore.push(companyData[key]);
+      }
+      console.log(chartScore);
+      console.log(companyData);
+      return this.changeScore(chartScore);
+    },
+  },
   methods: {
+    changeScore() {
+      this.chartData.datasets.push = chartScore;
+    },
     allView() {
       this.isAll = true;
       this.isMe = false;
@@ -54,7 +72,7 @@ export default {
       this.makeMeData();
       this.chartData.datasets.push(this.setPoint);
     },
-    componyView() {
+    companyView() {
       this.isAll = false;
       this.isMe = false;
       this.isCompany = true;
@@ -78,14 +96,18 @@ export default {
         labels: this.setLabels,
         datasets: [this.companyData],
       };
-      this.chartData.datasets[0].data = [2, 7, 4, 8, 9];
+      this.chartData.datasets[0].data = this.chartScore;
     },
+  },
+  mounted() {
+    console.log(chartScore);
   },
   data() {
     return {
-      company: '',
-      isAll: false,
-      isMe: true,
+      company: company,
+      companyName: '',
+      isAll: true,
+      isMe: false,
       isCompany: false,
       setPoint: {
         backgroundColor: 'rgba(244, 244, 244, 0.32)',
@@ -116,7 +138,7 @@ export default {
         backgroundColor: 'rgba(110, 60, 249, 0.32)',
         pointRadius: 0,
 
-        data: [5, 7, 5, 6, 2],
+        data: [8, 10, 10, 3, 6],
       },
       companyData: {
         label: '2',
@@ -125,7 +147,7 @@ export default {
         backgroundColor: 'rgba(255, 193, 74, 0.32)',
         pointRadius: 0,
 
-        data: [],
+        data: [5, 5, 5, 5, 5],
       },
       chartData: {
         labels: [
@@ -143,7 +165,7 @@ export default {
             backgroundColor: 'rgba(255, 193, 74, 0.32)',
             pointRadius: 0,
 
-            data: [1, 5, 4, 2, 6],
+            data: this.chartScore,
           },
           {
             label: '1',
@@ -152,7 +174,7 @@ export default {
             backgroundColor: 'rgba(110, 60, 249, 0.32)',
             pointRadius: 0,
 
-            data: [5, 7, 5, 6, 2],
+            data: [8, 10, 10, 3, 6],
           },
           {
             backgroundColor: 'rgba(244, 244, 244, 0.32)',
@@ -270,7 +292,8 @@ img {
 }
 #home {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  max-width: 360px;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
 }

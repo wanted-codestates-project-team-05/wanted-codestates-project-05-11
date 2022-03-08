@@ -1,10 +1,12 @@
 <template>
   <div id="search">
-    <input type="text" v-bind:item="item" placeholder="기업명을 검색하세요." v-on:keyup.enter="updateinput" />
+    <input type="text" placeholder="기업명을 검색하세요." v-on:keyup.enter="updateinput" />
   </div>
 </template>
 
 <script>
+import companyData from '../../assets/company.json';
+
 export default {
   name: 'search-input',
   model: {
@@ -14,9 +16,19 @@ export default {
   props: {
     item: String,
   },
+  data() {
+    return {
+      companyData,
+    };
+  },
   methods: {
     updateinput: function ($e) {
-      this.$emit('keyup.enter', $e.target.value);
+      if (!$e.target.value) return;
+      if (!Object.keys(this.companyData).includes($e.target.value.toUpperCase())) {
+        alert('기업을 찾을 수 없습니다.');
+      } else {
+        this.$emit('keyup.enter', $e.target.value.toUpperCase());
+      }
       $e.target.value = '';
     },
   },
@@ -98,13 +110,13 @@ export default {
 }
 
 input {
+  width: 100%;
   box-sizing: border-box;
   outline: none;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 12px 16px;
-  width: 328px;
   height: 48px;
   background: #f8f8f8;
   border: 1px solid #f2f2f2;
