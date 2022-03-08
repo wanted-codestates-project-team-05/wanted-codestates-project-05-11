@@ -31,8 +31,8 @@ import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
 import BarChartContainer from '@/components/bar/BarChartContainer';
+import companyDataJson from '../../assets/company.json';
 import company from '../../assets/company.json';
-import companyData from '../../assets/company.json';
 import userData from '../../assets/user.json';
 
 export default {
@@ -236,7 +236,8 @@ export default {
         },
       },
       userData: userData.user,
-      selectedCompany: companyData['KAKAO'],
+      selectedCompany: companyDataJson['KAKAO'],
+      companyDataJson,
     };
   },
 };
