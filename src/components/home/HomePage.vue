@@ -320,7 +320,8 @@ img {
 }
 #home {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  max-width: 360px;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
 }
