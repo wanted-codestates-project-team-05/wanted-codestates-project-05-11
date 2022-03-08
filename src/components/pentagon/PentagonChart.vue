@@ -53,6 +53,19 @@ export default {
             pointStyle: 'dash',
             data: [8, 8, 7, 8, 4],
           },
+          // {
+          //   label: '회사',
+          //   backgroundColor: 'rgba(255, 193, 74, 0.32)',
+          //   borderColor: 'rgba(0, 0, 0, 0)',
+          //   borderWidth: 0,
+          //   pointBackgroundColor: 'red',
+          //   pointBorderColor: 'rgba(255, 211, 53, 1)',
+          //   pointHoverBackgroundColor: '#fff',
+          //   pointHoverBorderColor: 'rgba(255, 211, 53, 1)',
+          //   borderJoinStyle: 'round',
+          //   pointStyle: 'dash',
+          //   data: [0, 10, 0, 0, 0],
+          // },
         ],
       },
       {
@@ -64,9 +77,20 @@ export default {
             suggestedMin: 0,
             suggestedMax: 10,
             stepSize: 2,
-            gridLines: {
-              borderDash: [10, 10],
+            callback: function (tick, index) {
+              return index === 3 ? { borderDash: [2] } : null;
             },
+          },
+          gridLines: {
+            // callbacks: {
+            //   borderDash: function (context) {
+            //     return context.index === 3 ? [5, 5] : [];
+            //   },
+            // },
+            borderDash: [3, 2],
+            // borderDash[gridLines.ticks.length]: [5],
+            // zeroLineWidth: 16,
+            // zeroLineColor: 'rgba(255, 211, 53, 1)',
           },
         },
         legend: {
