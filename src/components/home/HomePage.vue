@@ -20,7 +20,7 @@
           회사
         </button>
       </div>
-      <BarChartContainer :user-data-props="userData" :company-data="selectedCompany" />
+      <BarChartContainer v-bind:user-data-props="userData" v-bind:company-data="selectedCompany" />
     </div>
   </div>
 </template>
@@ -31,7 +31,8 @@ import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
 import BarChartContainer from '@/components/bar/BarChartContainer';
-import { userData, selectedCompany } from '@/assets/barData';
+import companyData from '../../assets/company.json';
+import userData from '../../assets/user.json';
 
 export default {
   name: 'HomePage',
@@ -82,6 +83,9 @@ export default {
         datasets: [this.companyData],
       };
       this.chartData.datasets[0].data = [2, 7, 4, 8, 9];
+    },
+    SelectCompany(companyName) {
+      this.selectedCompany = companyData[companyName];
     },
   },
   data() {
@@ -215,8 +219,8 @@ export default {
           },
         },
       },
-      userData,
-      selectedCompany,
+      userData: userData.user,
+      selectedCompany: companyData['KAKAO'],
     };
   },
 };
