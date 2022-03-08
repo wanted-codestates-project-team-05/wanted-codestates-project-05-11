@@ -1,15 +1,18 @@
 <template>
   <div id="app">
+    <home-page />
     <PentagonChart />
   </div>
 </template>
 
 <script>
 import PentagonChart from './components/pentagon/PentagonChart.vue';
+import HomePage from './components/home/HomePage.vue';
 
 export default {
   name: 'App',
   components: {
+    HomePage,
     PentagonChart,
   },
 };
@@ -21,7 +24,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+body {
+  margin: 0;
 }
 </style>
