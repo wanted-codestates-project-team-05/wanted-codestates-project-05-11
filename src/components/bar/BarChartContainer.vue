@@ -38,14 +38,15 @@
 
 <script>
 import BarChart from './BarChart.vue';
-import { userData, selectedCompany } from '@/assets/barData';
-
-const scoreTypes = [...Object.keys(userData)];
 
 export default {
   name: 'BarChartContainer',
   components: {
     BarChart,
+  },
+  props: {
+    userDataProps: Object,
+    companyData: Object,
   },
   data() {
     return {
@@ -57,12 +58,13 @@ export default {
         ['개인 성향', '조직 성향'],
         ['수평사고', '위계사고'],
       ],
-      userData,
-      selectedCompany,
-      data: { userData: userData, companyData: selectedCompany },
-      scoreTypes,
+      userData: this.userDataProps,
+      selectedCompany: this.companyData,
+      data: { userData: this.userDataProps, companyData: this.selectedCompany },
+      scoreTypes: [...Object.keys(this.userDataProps)],
     };
   },
+  mounted() {},
 };
 </script>
 
