@@ -20,6 +20,7 @@
           회사
         </button>
       </div>
+      <BarChartContainer :user-data-props="userData" :company-data="selectedCompany" />
     </div>
   </div>
 </template>
@@ -29,6 +30,8 @@ import PentagonChart from '../pentagon/PentagonChart.vue';
 import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
+import BarChartContainer from '@/components/bar/BarChartContainer';
+import { userData, selectedCompany } from '@/assets/barData';
 
 export default {
   name: 'HomePage',
@@ -37,6 +40,7 @@ export default {
     MainHeader,
     SearchInput,
     SearchInfo,
+    BarChartContainer,
   },
   methods: {
     allView() {
@@ -64,21 +68,21 @@ export default {
       this.chartData = {
         labels: this.setLabels,
         datasets: [this.meData, this.companyData],
-      }
+      };
     },
     makeMeData() {
       this.chartData = {
         labels: this.setLabels,
         datasets: [this.meData],
-      }
+      };
     },
     makeCompanyData() {
       this.chartData = {
         labels: this.setLabels,
         datasets: [this.companyData],
-      }
-      this.chartData.datasets[0].data = [ 2, 7, 4, 8, 9 ];
-    }
+      };
+      this.chartData.datasets[0].data = [2, 7, 4, 8, 9];
+    },
   },
   data() {
     return {
@@ -87,32 +91,26 @@ export default {
       isMe: false,
       isCompany: false,
       setPoint: {
-        backgroundColor: "rgba(244, 244, 244, 0.32)",
-        borderColor: "#B2B2B2",
+        backgroundColor: 'rgba(244, 244, 244, 0.32)',
+        borderColor: '#B2B2B2',
         borderWidth: 1,
         pointBackgroundColor: [
-          "rgba(237, 168, 154, 0.7)",
-          "rgba(182, 197, 248, 0.7)",
-          "rgba(164, 214, 227, 0.7)",
-          "rgba(238, 184, 207, 0.7)",
-          "rgba(183, 220, 171, 0.7)",
+          'rgba(237, 168, 154, 0.7)',
+          'rgba(182, 197, 248, 0.7)',
+          'rgba(164, 214, 227, 0.7)',
+          'rgba(238, 184, 207, 0.7)',
+          'rgba(183, 220, 171, 0.7)',
         ],
-        pointBorderColor: [
-          "#EDA89A",
-          "#B6C5F8",
-          "#A4D6E3",
-          "#EEB8CF",
-          "#B7DCAB",
-        ],
+        pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
         pointRadius: 18,
         data: [10, 10, 10, 10, 10],
       },
       setLabels: [
-        ["적극적인", "Aggressive", ""],
-        [" 자신있는", "Confident", ""],
-        ["", "  책임있는", "Responsible"],
-        ["", "개인주의", "Indivisual"],
-        ["수평적인 ", "Horizontal", ""],
+        ['적극적인', 'Aggressive', ''],
+        [' 자신있는', 'Confident', ''],
+        ['', '  책임있는', 'Responsible'],
+        ['', '개인주의', 'Indivisual'],
+        ['수평적인 ', 'Horizontal', ''],
       ],
       meData: {
         label: '1',
@@ -120,8 +118,8 @@ export default {
         borderColor: 'rgba(110, 60, 249, 1)',
         backgroundColor: 'rgba(110, 60, 249, 0.32)',
         pointRadius: 0,
-        
-        data: [ 5, 7, 5, 6, 2 ],
+
+        data: [5, 7, 5, 6, 2],
       },
       companyData: {
         label: '2',
@@ -129,16 +127,16 @@ export default {
         borderColor: 'rgba(255, 193, 74, 1)',
         backgroundColor: 'rgba(255, 193, 74, 0.32)',
         pointRadius: 0,
-        
-        data: [ ],
+
+        data: [],
       },
       chartData: {
         labels: [
-          ["적극적인", "Aggressive", ""],
-          [" 자신있는", "Confident", ""],
-          ["", "  책임있는", "Responsible"],
-          ["", "개인주의", "Indivisual"],
-          ["수평적인 ", "Horizontal", ""],
+          ['적극적인', 'Aggressive', ''],
+          [' 자신있는', 'Confident', ''],
+          ['', '  책임있는', 'Responsible'],
+          ['', '개인주의', 'Indivisual'],
+          ['수평적인 ', 'Horizontal', ''],
         ],
         datasets: [
           {
@@ -173,8 +171,8 @@ export default {
             pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
             pointRadius: 18,
             data: [10, 10, 10, 10, 10],
-          }
-        ]
+          },
+        ],
       },
       options: {
         responsive: true,
@@ -217,6 +215,8 @@ export default {
           },
         },
       },
+      userData,
+      selectedCompany,
     };
   },
 };
