@@ -1,18 +1,19 @@
 <script>
-import { HorizontalBar, mixins } from 'vue-chartjs';
+import { HorizontalBar } from 'vue-chartjs';
 
 export default {
   extends: HorizontalBar,
-  mixins: [mixins.reactiveProp],
   props: {
     chartData: Object,
+    companyName: String,
   },
   mounted() {
-    this.renderChart(this.getData(this.chartData), this.options);
+    this.renderChart(this.getData(this.chartData), this.options, this.companyName);
   },
   watch: {
-    chartData() {
-      this.getData(this.chartData);
+    companyName() {
+      this.renderChart(this.getData(this.chartData), this.options, this.companyName);
+      console.log('chart', this.chartData);
     },
   },
   data() {
@@ -69,6 +70,7 @@ export default {
         );
       };
       const userGraphData = chartData.userData && makeGraphData(chartData.userData, chartData.maxScore);
+      console.log(chartData.companyData, 'chartData');
       const companyGraphData = chartData.companyData && makeGraphData(chartData.companyData, chartData.maxScore);
       const data = {
         labels: ['type1', 'type2', 'type3', 'type4', 'type5'],

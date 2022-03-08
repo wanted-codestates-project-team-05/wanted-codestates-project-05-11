@@ -25,7 +25,7 @@
           >
         </span>
       </li>
-      <BarChart class="Chart" v-bind:chart-data="chartData" />
+      <BarChart class="Chart" v-bind:chart-data="chartData" v-bind:company-name="selectedCompanyName" />
     </ul>
   </div>
 </template>
@@ -43,11 +43,13 @@ export default {
   props: {
     userDataProps: Object,
     companyData: Object,
+    companyName: String,
   },
   watch: {
-    companyData: function () {
-      this.selectedCompany = this.companyData;
-      console.log(this.selectedCompany, 'barChartContainer');
+    companyName: function () {
+      this.selectedCompanyName = this.companyName;
+      this.chartData = { ...this.chartData, companyData: this.companyData };
+      console.log(this.companyData, 'barChartContainer');
     },
   },
   data() {
@@ -61,9 +63,9 @@ export default {
         ['수평사고', '위계사고'],
       ],
       userData: this.userDataProps,
-      selectedCompany: this.companyData,
       chartData: { userData: this.userDataProps, companyData: this.companyData, maxScore: MAX_SCORE },
       scoreTypes: [...Object.keys(this.userDataProps)],
+      selectedCompanyName: this.companyName,
     };
   },
 };
@@ -74,6 +76,7 @@ export default {
   --color-black: #121212;
   --color-white: #ffffff;
 }
+
 .wrapper {
   position: relative;
   display: flex;
@@ -83,6 +86,7 @@ export default {
   max-width: 800px;
   margin: 0 auto;
 }
+
 .header {
   display: flex;
   justify-content: center;
@@ -92,6 +96,7 @@ export default {
   top: 0px;
   height: 118px;
 }
+
 .sub {
   height: 17px;
   font-family: Agenor;
@@ -103,6 +108,7 @@ export default {
   letter-spacing: 0.32em;
   color: var(--color-black);
 }
+
 .result {
   height: 59px;
   font-family: Roboto;
@@ -113,6 +119,7 @@ export default {
   text-align: center;
   color: var(--color-black);
 }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -123,6 +130,7 @@ export default {
   height: 220px;
   width: 100%;
 }
+
 .row {
   width: 95%;
   height: 25px;
@@ -133,18 +141,21 @@ export default {
   font-size: 10px;
   font-weight: 600;
 }
+
 .Chart {
   position: absolute;
   height: 202px;
   width: 45%;
   bottom: 3px;
 }
+
 .section {
   width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .bigNum {
   font-size: 14px;
   font-weight: 900;

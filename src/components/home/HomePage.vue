@@ -20,7 +20,11 @@
           회사
         </button>
       </div>
-      <BarChartContainer v-bind:user-data-props="userData" v-bind:company-data="selectedCompany" />
+      <BarChartContainer
+        v-bind:user-data-props="userData"
+        v-bind:company-data="selectedCompany"
+        v-bind:company-name="companyName"
+      />
     </div>
   </div>
 </template>
@@ -87,7 +91,7 @@ export default {
   },
   watch: {
     companyName: function () {
-      this.selectedCompany = this.companyDataJson['KAKAO'];
+      this.selectedCompany = this.companyDataJson[this.companyName];
       console.log(this.selectedCompany, 'home');
     },
   },
