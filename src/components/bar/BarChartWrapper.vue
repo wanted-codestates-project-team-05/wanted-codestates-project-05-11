@@ -7,10 +7,7 @@
     <ul class="container">
       <li v-for="(list, index) in userObj" v-bind:key="list" class="itemRow">
         <span>
-          <span
-            :style="[data.user[list] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]"
-            class="item1"
-          >
+          <span class="item" :style="[data.user[list] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]">
             <span class="BigNum">{{ data.user[list] }}</span>
             <span>/{{ MAX_SCORE }}</span>
           </span>
@@ -20,8 +17,8 @@
         </span>
         <span>
           <span
+            class="item"
             :style="[data.user[list] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]"
-            class="item1"
             >{{ personalityArray[index][1] }}</span
           >
           <span :style="[data.user[list] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]">
@@ -136,10 +133,10 @@ export default {
   margin: 7px;
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 600;
 }
-.item1 {
+.item {
   padding-right: 25px;
 }
 .BigNum {
