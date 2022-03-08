@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <HomePage />
+    <BarChartContainer />
   </div>
 </template>
 
 <script>
 import HomePage from './components/home/HomePage.vue';
+import BarChartContainer from '@/components/bar/BarChartContainer';
 
 export default {
   name: 'App',
   components: {
     HomePage,
+    BarChartContainer,
   },
 };
 </script>
