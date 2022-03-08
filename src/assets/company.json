@@ -1,0 +1,25 @@
+{
+  "SAMSUNG": {
+    "aggressive": 10,
+    "confident": 9,
+    "resoponsible": 9,
+    "indivisual": 5,
+    "horizontal": 3
+  },
+
+  "KAKAO": {
+    "aggressive": 6,
+    "confident": 7,
+    "resoponsible": 7,
+    "indivisual": 8,
+    "horizontal": 9
+  },
+
+  "LGCNS": {
+    "aggressive": 7,
+    "confident": 7,
+    "resoponsible": 7,
+    "indivisual": 7,
+    "horizontal": 7
+  }
+}

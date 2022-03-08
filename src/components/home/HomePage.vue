@@ -1,35 +1,31 @@
 <template>
-
   <div id="home">
     <main-header />
     <search-info v-model="company" />
     <search-input v-model="company" />
-
-  </div>
-  <div class="radar-chart">
-    <PentagonChart :chartdata="chartData" :options="options"/>
-    <div class="bg-img"></div>
-    <div class="button-wrapper">
-      <button v-bind:class="['button-style', {'active': isAll}]" @click="allView()">
-        <img alt="all" src="../../assets/all.png" width="13" height="13">
-        모두
-      </button>
-      <button v-bind:class="['button-style', {'active': isMe}]" @click="meView()">
-        <img alt="all" src="../../assets/me.png" width="10" height="10">
-        본인
-      </button>
-      <button v-bind:class="['button-style', {'active': isCompany}]" @click="componyView()">
-        <img alt="all" src="../../assets/company.png" width="10" height="10">
-        회사
-      </button>
+    <div class="radar-chart">
+      <PentagonChart :chartdata="chartData" :options="options" />
+      <div class="bg-img"></div>
+      <div class="button-wrapper">
+        <button v-bind:class="['button-style', { active: isAll }]" @click="allView()">
+          <img alt="all" src="../../assets/all.png" width="13" height="13" />
+          모두
+        </button>
+        <button v-bind:class="['button-style', { active: isMe }]" @click="meView()">
+          <img alt="all" src="../../assets/me.png" width="10" height="10" />
+          본인
+        </button>
+        <button v-bind:class="['button-style', { active: isCompany }]" @click="componyView()">
+          <img alt="all" src="../../assets/company.png" width="10" height="10" />
+          회사
+        </button>
+      </div>
     </div>
-
-
+  </div>
 </template>
 
 <script>
-
-import PentagonChart from '../pentagon/PentagonChart.vue'
+import PentagonChart from '../pentagon/PentagonChart.vue';
 import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
@@ -38,7 +34,7 @@ export default {
   name: 'HomePage',
   components: {
     PentagonChart,
-        MainHeader,
+    MainHeader,
     SearchInput,
     SearchInfo,
   },
@@ -47,13 +43,13 @@ export default {
       this.isAll = true;
       this.isMe = false;
       this.isCompany = false;
-      this.chartData =  {
+      this.chartData = {
         labels: [
-          ["적극적인",	"Aggressive"],
-          ["자신있는", "Confident"],	
-          ["책임있는", "Responsible"],	
-          ["개인주의", "Indivisual"],
-          ["수평적인", "Horizontal"],	
+          ['적극적인', 'Aggressive'],
+          ['자신있는', 'Confident'],
+          ['책임있는', 'Responsible'],
+          ['개인주의', 'Indivisual'],
+          ['수평적인', 'Horizontal'],
         ],
         datasets: [
           {
@@ -62,8 +58,8 @@ export default {
             borderColor: 'rgba(255, 193, 74, 1)',
             backgroundColor: 'rgba(255, 193, 74, 0.32)',
             pointRadius: 0,
-            
-            data: [ 1, 5, 4, 2, 6 ],
+
+            data: [1, 5, 4, 2, 6],
           },
           {
             label: '1',
@@ -71,27 +67,21 @@ export default {
             borderColor: 'rgba(110, 60, 249, 1)',
             backgroundColor: 'rgba(110, 60, 249, 0.32)',
             pointRadius: 0,
-            
-            data: [ 5, 7, 5, 6, 2 ]
+
+            data: [5, 7, 5, 6, 2],
           },
           {
-            backgroundColor: "rgba(244, 244, 244, 0.32)",
-            borderColor: "#B2B2B2",
+            backgroundColor: 'rgba(244, 244, 244, 0.32)',
+            borderColor: '#B2B2B2',
             borderWidth: 1,
             pointBackgroundColor: [
-              "rgba(237, 168, 154, 0.7)",
-              "rgba(182, 197, 248, 0.7)",
-              "rgba(164, 214, 227, 0.7)",
-              "rgba(238, 184, 207, 0.7)",
-              "rgba(183, 220, 171, 0.7)",
+              'rgba(237, 168, 154, 0.7)',
+              'rgba(182, 197, 248, 0.7)',
+              'rgba(164, 214, 227, 0.7)',
+              'rgba(238, 184, 207, 0.7)',
+              'rgba(183, 220, 171, 0.7)',
             ],
-            pointBorderColor: [
-              "#EDA89A",
-              "#B6C5F8",
-              "#A4D6E3",
-              "#EEB8CF",
-              "#B7DCAB",
-            ],
+            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
             pointRadius: 18,
             data: [10, 10, 10, 10, 10],
           },
@@ -104,11 +94,11 @@ export default {
       this.isCompany = false;
       this.chartData = {
         labels: [
-          ["적극적인",	"Aggressive"],
-          ["자신있는", "Confident"],	
-          ["책임있는", "Responsible"],	
-          ["개인주의", "Indivisual"],
-          ["수평적인", "Horizontal"],	
+          ['적극적인', 'Aggressive'],
+          ['자신있는', 'Confident'],
+          ['책임있는', 'Responsible'],
+          ['개인주의', 'Indivisual'],
+          ['수평적인', 'Horizontal'],
         ],
         datasets: [
           {
@@ -117,31 +107,25 @@ export default {
             borderColor: 'rgba(110, 60, 249, 1)',
             backgroundColor: 'rgba(110, 60, 249, 0.32)',
             pointRadius: 0,
-            
-            data: [ 5, 7, 5, 6, 2 ],
+
+            data: [5, 7, 5, 6, 2],
           },
           {
-            backgroundColor: "rgba(244, 244, 244, 0.32)",
-            borderColor: "#B2B2B2",
+            backgroundColor: 'rgba(244, 244, 244, 0.32)',
+            borderColor: '#B2B2B2',
             borderWidth: 1,
             pointBackgroundColor: [
-              "rgba(237, 168, 154, 0.7)",
-              "rgba(182, 197, 248, 0.7)",
-              "rgba(164, 214, 227, 0.7)",
-              "rgba(238, 184, 207, 0.7)",
-              "rgba(183, 220, 171, 0.7)",
+              'rgba(237, 168, 154, 0.7)',
+              'rgba(182, 197, 248, 0.7)',
+              'rgba(164, 214, 227, 0.7)',
+              'rgba(238, 184, 207, 0.7)',
+              'rgba(183, 220, 171, 0.7)',
             ],
-            pointBorderColor: [
-              "#EDA89A",
-              "#B6C5F8",
-              "#A4D6E3",
-              "#EEB8CF",
-              "#B7DCAB",
-            ],
+            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
             pointRadius: 18,
             data: [10, 10, 10, 10, 10],
           },
-        ]
+        ],
       };
     },
     componyView() {
@@ -150,11 +134,11 @@ export default {
       this.isCompany = true;
       this.chartData = {
         labels: [
-          ["적극적인",	"Aggressive"],
-          ["자신있는", "Confident"],	
-          ["책임있는", "Responsible"],	
-          ["개인주의", "Indivisual"],
-          ["수평적인", "Horizontal"],	
+          ['적극적인', 'Aggressive'],
+          ['자신있는', 'Confident'],
+          ['책임있는', 'Responsible'],
+          ['개인주의', 'Indivisual'],
+          ['수평적인', 'Horizontal'],
         ],
         datasets: [
           {
@@ -163,48 +147,43 @@ export default {
             borderColor: 'rgba(255, 193, 74, 1)',
             backgroundColor: 'rgba(255, 193, 74, 0.32)',
             pointRadius: 0,
-            
-            data: [ 1, 5, 4, 2, 6 ],
+
+            data: [1, 5, 4, 2, 6],
           },
           {
-            backgroundColor: "rgba(244, 244, 244, 0.32)",
-            borderColor: "#B2B2B2",
+            backgroundColor: 'rgba(244, 244, 244, 0.32)',
+            borderColor: '#B2B2B2',
             borderWidth: 1,
             pointBackgroundColor: [
-              "rgba(237, 168, 154, 0.7)",
-              "rgba(182, 197, 248, 0.7)",
-              "rgba(164, 214, 227, 0.7)",
-              "rgba(238, 184, 207, 0.7)",
-              "rgba(183, 220, 171, 0.7)",
+              'rgba(237, 168, 154, 0.7)',
+              'rgba(182, 197, 248, 0.7)',
+              'rgba(164, 214, 227, 0.7)',
+              'rgba(238, 184, 207, 0.7)',
+              'rgba(183, 220, 171, 0.7)',
             ],
-            pointBorderColor: [
-              "#EDA89A",
-              "#B6C5F8",
-              "#A4D6E3",
-              "#EEB8CF",
-              "#B7DCAB",
-            ],
+            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
             pointRadius: 18,
             data: [10, 10, 10, 10, 10],
           },
-        ]
+        ],
       };
     },
   },
-  data () {
+  data() {
     return {
+      company: '',
       isAll: true,
       isMe: false,
       isCompany: false,
-      meData: [ 50, 70, 50, 60, 58 ],
-      companyData: [ 14, 16, 65, 42, 53 ],
+      meData: [50, 70, 50, 60, 58],
+      companyData: [14, 16, 65, 42, 53],
       chartData: {
         labels: [
-          ["적극적인",	"Aggressive"],
-          ["자신있는", "Confident"],	
-          ["책임있는", "Responsible"],	
-          ["개인주의", "Indivisual"],
-          ["수평적인", "Horizontal"],	
+          ['적극적인', 'Aggressive'],
+          ['자신있는', 'Confident'],
+          ['책임있는', 'Responsible'],
+          ['개인주의', 'Indivisual'],
+          ['수평적인', 'Horizontal'],
         ],
         datasets: [
           {
@@ -213,8 +192,8 @@ export default {
             borderColor: 'rgba(255, 193, 74, 1)',
             backgroundColor: 'rgba(255, 193, 74, 0.32)',
             pointRadius: 0,
-            
-            data: [ 1, 5, 4, 2, 6 ],
+
+            data: [1, 5, 4, 2, 6],
           },
           {
             label: '1',
@@ -222,37 +201,30 @@ export default {
             borderColor: 'rgba(110, 60, 249, 1)',
             backgroundColor: 'rgba(110, 60, 249, 0.32)',
             pointRadius: 0,
-            
-            
-            data: [ 5, 7, 5, 6, 2 ],
+
+            data: [5, 7, 5, 6, 2],
           },
           {
-            backgroundColor: "rgba(244, 244, 244, 0.32)",
-            borderColor: "#B2B2B2",
+            backgroundColor: 'rgba(244, 244, 244, 0.32)',
+            borderColor: '#B2B2B2',
             borderWidth: 1,
             pointBackgroundColor: [
-              "rgba(237, 168, 154, 0.7)",
-              "rgba(182, 197, 248, 0.7)",
-              "rgba(164, 214, 227, 0.7)",
-              "rgba(238, 184, 207, 0.7)",
-              "rgba(183, 220, 171, 0.7)",
+              'rgba(237, 168, 154, 0.7)',
+              'rgba(182, 197, 248, 0.7)',
+              'rgba(164, 214, 227, 0.7)',
+              'rgba(238, 184, 207, 0.7)',
+              'rgba(183, 220, 171, 0.7)',
             ],
-            pointBorderColor: [
-              "#EDA89A",
-              "#B6C5F8",
-              "#A4D6E3",
-              "#EEB8CF",
-              "#B7DCAB",
-            ],
+            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
             pointRadius: 18,
             data: [10, 10, 10, 10, 10],
           },
-        ]
+        ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        legend: { 
+        legend: {
           display: false,
           //position: 'bottom',
         },
@@ -261,11 +233,9 @@ export default {
         },
         scale: {
           gridLines: {
-            borderDash: [5, 5]
+            borderDash: [5, 5],
           },
-          angleLines: {
-
-          },
+          angleLines: {},
           ticks: {
             display: false,
             beginAtZero: true,
@@ -274,17 +244,17 @@ export default {
             stepSize: 2.5,
           },
           pointLabels: {
-            fontFamily: "Noto Sans",
-            fontStyle: "bold",
-            fontColor: "black",
+            fontFamily: 'Noto Sans',
+            fontStyle: 'bold',
+            fontColor: 'black',
             fontSize: 12,
             lineHeight: 1.5,
-          }
+          },
         },
         enabled: true,
-        hover : false,
+        hover: false,
         layout: {
-          padding: 10
+          padding: 10,
         },
         elements: {
           point: {
@@ -292,13 +262,9 @@ export default {
           },
         },
       },
-    },
-    {
-      company: '',
-    }
-  }
-}
-
+    };
+  },
+};
 </script>
 
 <style>
@@ -316,7 +282,7 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: 4px;
 }
 .button-style {
@@ -326,11 +292,11 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid #F2F2F2;
+  border: 1px solid #f2f2f2;
   font-size: 12px;
   cursor: pointer;
   border-radius: 4px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   color: #727272;
 }
 img {
@@ -351,6 +317,7 @@ img {
   height: 54px;
   border-radius: 50%;
   z-index: 10;
+}
 #home {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   max-width: 360px;
@@ -358,7 +325,3 @@ img {
   flex-direction: column;
 }
 </style>
-
-
-
-
