@@ -25,7 +25,7 @@
           >
         </span>
       </li>
-      <BarChart class="Chart" :chart-data="chartData" />
+      <BarChart class="Chart" v-bind:chart-data="chartData" />
     </ul>
   </div>
 </template>
