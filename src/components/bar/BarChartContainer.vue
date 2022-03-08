@@ -12,20 +12,25 @@
             <span>/{{ MAX_SCORE }}</span>
           </span>
           <span :style="[userData[scoreType] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]"
-          >{{ personalityType[index][0] }}
+            >{{ personalityType[index][0] }}
           </span>
         </span>
         <span class="section">
           <span :style="[userData[scoreType] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]">{{
-              personalityType[index][1]
-            }}</span>
+            personalityType[index][1]
+          }}</span>
           <span :style="[userData[scoreType] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]">
             <span class="bigNum">{{ MAX_SCORE - userData[scoreType] }}</span>
             <span>/{{ MAX_SCORE }}</span></span
           >
         </span>
       </li>
-      <BarChart class="Chart" :chart-data="chartData" />
+      <BarChart
+        class="Chart"
+        v-bind:chart-data="chartData"
+        v-bind:company-name="selectedCompanyName"
+        :graphViewType="graphViewType"
+      />
     </ul>
   </div>
 </template>
@@ -43,6 +48,17 @@ export default {
   props: {
     userDataProps: Object,
     companyData: Object,
+    companyName: String,
+    viewType: String,
+  },
+  watch: {
+    companyName: function () {
+      this.selectedCompanyName = this.companyName;
+      this.chartData = { ...this.chartData, companyData: this.companyData };
+    },
+    viewType: function () {
+      this.graphViewType = this.viewType;
+    },
   },
   data() {
     return {
@@ -55,9 +71,10 @@ export default {
         ['수평사고', '위계사고'],
       ],
       userData: this.userDataProps,
-      selectedCompany: this.companyData,
       chartData: { userData: this.userDataProps, companyData: this.companyData, maxScore: MAX_SCORE },
       scoreTypes: [...Object.keys(this.userDataProps)],
+      graphViewType: 'isMe',
+      selectedCompanyName: this.companyName,
     };
   },
 };

@@ -1,11 +1,23 @@
 <script>
-import { HorizontalBar, mixins } from 'vue-chartjs';
+import { HorizontalBar } from 'vue-chartjs';
 
 export default {
   extends: HorizontalBar,
-  mixins: [mixins.reactiveProp],
+  props: {
+    chartData: Object,
+    companyName: String,
+    graphViewType: String,
+  },
   mounted() {
-    this.renderChart(this.getData(this.chartData), this.options);
+    this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
+  },
+  watch: {
+    companyName() {
+      this.renderChart(this.getData(this.chartData, this.graphViewType), this.options, this.companyName);
+    },
+    graphViewType() {
+      this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
+    },
   },
   data() {
     return {
@@ -54,14 +66,20 @@ export default {
     };
   },
   methods: {
-    getData(chartData) {
+    getData(chartData, graphViewType) {
       const makeGraphData = (data, maxScore) => {
         return Object.values(data).map((score) =>
           score >= maxScore / 2 || score === 0 ? score * -1 : maxScore - score
         );
       };
-      const userGraphData = chartData.userData && makeGraphData(chartData.userData, chartData.maxScore);
-      const companyGraphData = chartData.companyData && makeGraphData(chartData.companyData, chartData.maxScore);
+      const userGraphData =
+        graphViewType !== 'isCompany'
+          ? chartData.userData && makeGraphData(chartData.userData, chartData.maxScore)
+          : [];
+      const companyGraphData =
+        graphViewType !== 'isMe'
+          ? chartData.companyData && makeGraphData(chartData.companyData, chartData.maxScore)
+          : [];
       const data = {
         labels: ['type1', 'type2', 'type3', 'type4', 'type5'],
         datasets: [

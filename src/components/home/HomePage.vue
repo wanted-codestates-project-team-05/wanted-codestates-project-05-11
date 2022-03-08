@@ -20,7 +20,12 @@
           회사
         </button>
       </div>
-      <BarChartContainer :user-data-props="userData" :company-data="selectedCompany" />
+      <BarChartContainer
+        v-bind:user-data-props="userData"
+        v-bind:company-data="selectedCompany"
+        v-bind:company-name="companyName"
+        v-bind:view-type="viewType"
+      />
     </div>
   </div>
 </template>
@@ -31,8 +36,9 @@ import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
 import BarChartContainer from '@/components/bar/BarChartContainer';
-import { userData, selectedCompany } from '@/assets/barData';
+import companyDataJson from '../../assets/company.json';
 import company from '../../assets/company.json';
+import userData from '../../assets/user.json';
 
 export default {
   name: 'HomePage',
@@ -53,6 +59,7 @@ export default {
       this.companyJsonData = chartScore;
       console.log(chartScore);
       console.log(companyData);
+      this.selectedCompany = this.companyDataJson[this.companyName];
     },
     companyJsonData(){
       this.allView();
@@ -65,6 +72,7 @@ export default {
       this.isCompany = false;
       this.makeAllData();
       this.chartData.datasets.push(this.setPoint);
+      this.viewType = 'isAll';
     },
     meView() {
       this.isAll = false;
@@ -72,6 +80,7 @@ export default {
       this.isCompany = false;
       this.makeMeData();
       this.chartData.datasets.push(this.setPoint);
+      this.viewType = 'isMe';
     },
     componyView() {
       this.isAll = false;
@@ -79,6 +88,7 @@ export default {
       this.isCompany = true;
       this.makeCompanyData();
       this.chartData.datasets.push(this.setPoint);
+      this.viewType = 'isCompany';
     },
     makeAllData() {
       this.chartData = {
@@ -234,8 +244,10 @@ export default {
           },
         },
       },
-      userData,
-      selectedCompany,
+      userData: userData.user,
+      selectedCompany: {},
+      companyDataJson,
+      viewType: 'isMe',
     };
   },
 };
