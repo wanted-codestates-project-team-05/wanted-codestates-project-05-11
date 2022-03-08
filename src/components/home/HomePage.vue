@@ -1,4 +1,11 @@
 <template>
+
+  <div id="home">
+    <main-header />
+    <search-info v-model="company" />
+    <search-input v-model="company" />
+
+  </div>
   <div class="radar-chart">
     <PentagonChart :chartdata="chartData" :options="options"/>
     <div class="bg-img"></div>
@@ -16,16 +23,24 @@
         회사
       </button>
     </div>
-  </div>
+
+
 </template>
 
 <script>
+
 import PentagonChart from '../pentagon/PentagonChart.vue'
+import SearchInput from './SearchInput.vue';
+import SearchInfo from './SearchInfo.vue';
+import MainHeader from './MainHeader.vue';
 
 export default {
   name: 'HomePage',
   components: {
     PentagonChart,
+        MainHeader,
+    SearchInput,
+    SearchInfo,
   },
   methods: {
     allView() {
@@ -277,6 +292,9 @@ export default {
           },
         },
       },
+    },
+    {
+      company: '',
     }
   }
 }
@@ -333,5 +351,14 @@ img {
   height: 54px;
   border-radius: 50%;
   z-index: 10;
+#home {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
 }
 </style>
+
+
+
+
