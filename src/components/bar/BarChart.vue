@@ -1,9 +1,82 @@
-<template>
-  <div>BarChart</div>
-</template>
-
 <script>
+import { HorizontalBar, mixins } from 'vue-chartjs';
+
 export default {
-  name: 'BarChart',
+  extends: HorizontalBar,
+  mixins: [mixins.reactiveProp],
+  props: {
+    userData: Object,
+    companyData: Object,
+    chartData: Object,
+    maxScore: Number,
+  },
+  mounted() {
+    this.renderChart(this.getData(this.userData, this.companyData, this.maxScore), this.options, this.chartData);
+  },
+  data() {
+    return {
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false,
+        },
+        scales: {
+          yAxes: [
+            {
+              gridLines: {
+                display: false,
+              },
+              ticks: {
+                fontSize: 20,
+                beginAtZero: true,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              ticks: {
+                display: false,
+                min: -10,
+                max: 10,
+                stepSize: 20,
+              },
+            },
+          ],
+        },
+      },
+    };
+  },
+  methods: {
+    getData(userData, companyData, maxScore) {
+      const makeGraphData = (data, maxScore) => {
+        return Object.values(data).map((score) =>
+          score >= maxScore / 2 || score === 0 ? score * -1 : maxScore - score
+        );
+      };
+      const userGraphData = userData && makeGraphData(userData, maxScore);
+      const companyGraphData = companyData && makeGraphData(companyData, maxScore);
+      const data = {
+        labels: ['', '', '', '', ''],
+        datasets: [
+          {
+            label: 'User',
+            backgroundColor: '#6E3CF9',
+            barPercentage: 0.5,
+            data: userGraphData,
+          },
+          {
+            label: 'Company',
+            backgroundColor: '#FFC24A',
+            barPercentage: 0.5,
+            data: companyGraphData,
+          },
+        ],
+      };
+      return data;
+    },
+  },
 };
 </script>
+
+<style></style>

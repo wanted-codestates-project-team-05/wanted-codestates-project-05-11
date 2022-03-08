@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <PentagonChart />
+    <BarChartContainer />
   </div>
 </template>
 
 <script>
 import PentagonChart from './components/pentagon/PentagonChart.vue';
+import BarChartContainer from '@/components/bar/BarChartContainer';
 
 export default {
   name: 'App',
   components: {
     PentagonChart,
+    BarChartContainer,
   },
 };
 </script>
