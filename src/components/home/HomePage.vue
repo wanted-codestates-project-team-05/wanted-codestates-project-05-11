@@ -20,6 +20,7 @@
           회사
         </button>
       </div>
+      <BarChartContainer :user-data-props="userData" :company-data="selectedCompany" />
     </div>
   </div>
 </template>
@@ -29,9 +30,16 @@ import PentagonChart from '../pentagon/PentagonChart.vue';
 import SearchInput from './SearchInput.vue';
 import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
+
+import BarChartContainer from '@/components/bar/BarChartContainer';
+import { userData, selectedCompany } from '@/assets/barData';
 import company from '../../assets/company.json';
-let companyData;
-let chartScore = [];
+import user from '../../assets/user.json';
+
+const userInfo = [];
+for (let key in user.user) {
+  userInfo.push(user.user[key]);
+}
 
 export default {
   name: 'HomePage',
@@ -40,24 +48,23 @@ export default {
     MainHeader,
     SearchInput,
     SearchInfo,
+    BarChartContainer,
   },
-  props: companyName,
   watch: {
     companyName: function () {
-      companyData = this.company[this.companyName];
-      chartScore = [];
+      const companyData = this.company[this.companyName];
+      let chartScore = [];
       for (let key in companyData) {
         chartScore.push(companyData[key]);
       }
-      console.log(chartScore);
-      console.log(companyData);
-      return this.changeScore(chartScore);
+      this.companyJsonData = chartScore;
+    },
+    companyJsonData() {
+      this.allView();
     },
   },
+  mounted() {},
   methods: {
-    changeScore() {
-      this.chartData.datasets.push = chartScore;
-    },
     allView() {
       this.isAll = true;
       this.isMe = false;
@@ -84,6 +91,7 @@ export default {
         labels: this.setLabels,
         datasets: [this.meData, this.companyData],
       };
+      this.chartData.datasets[1].data = this.companyJsonData;
     },
     makeMeData() {
       this.chartData = {
@@ -96,18 +104,17 @@ export default {
         labels: this.setLabels,
         datasets: [this.companyData],
       };
-      this.chartData.datasets[0].data = this.chartScore;
+      this.chartData.datasets[0].data = this.companyJsonData;
     },
-  },
-  mounted() {
-    console.log(chartScore);
   },
   data() {
     return {
       company: company,
       companyName: '',
-      isAll: true,
-      isMe: false,
+      companyJsonData: [],
+      userJsonData: [],
+      isAll: false,
+      isMe: true,
       isCompany: false,
       setPoint: {
         backgroundColor: 'rgba(244, 244, 244, 0.32)',
@@ -137,8 +144,7 @@ export default {
         borderColor: 'rgba(110, 60, 249, 1)',
         backgroundColor: 'rgba(110, 60, 249, 0.32)',
         pointRadius: 0,
-
-        data: [8, 10, 10, 3, 6],
+        data: userInfo,
       },
       companyData: {
         label: '2',
@@ -146,8 +152,7 @@ export default {
         borderColor: 'rgba(255, 193, 74, 1)',
         backgroundColor: 'rgba(255, 193, 74, 0.32)',
         pointRadius: 0,
-
-        data: [5, 5, 5, 5, 5],
+        data: [],
       },
       chartData: {
         labels: [
@@ -164,8 +169,7 @@ export default {
             borderColor: 'rgba(255, 193, 74, 1)',
             backgroundColor: 'rgba(255, 193, 74, 0.32)',
             pointRadius: 0,
-
-            data: this.chartScore,
+            data: [],
           },
           {
             label: '1',
@@ -173,8 +177,7 @@ export default {
             borderColor: 'rgba(110, 60, 249, 1)',
             backgroundColor: 'rgba(110, 60, 249, 0.32)',
             pointRadius: 0,
-
-            data: [8, 10, 10, 3, 6],
+            data: userInfo,
           },
           {
             backgroundColor: 'rgba(244, 244, 244, 0.32)',
@@ -198,7 +201,6 @@ export default {
         maintainAspectRatio: false,
         legend: {
           display: false,
-          //position: 'bottom',
         },
         tooltips: {
           enabled: false,
@@ -234,6 +236,8 @@ export default {
           },
         },
       },
+      userData,
+      selectedCompany,
     };
   },
 };
@@ -241,8 +245,8 @@ export default {
 
 <style>
 .radar-chart {
-  width: 400px;
-  height: 400px;
+  width: 90%;
+  height: 600px;
   margin: 0 auto;
   position: relative;
 }
@@ -281,7 +285,7 @@ img {
 .bg-img {
   position: absolute;
   left: 50%;
-  top: 54%;
+  top: 35%;
   transform: translate(-50%, -50%);
   background-image: url('../../assets/chart-bg.png');
   background-size: 54px 54px;
