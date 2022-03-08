@@ -119,13 +119,14 @@ export default {
   align-items: center;
   position: absolute;
   bottom: 0px;
-  height: 202px;
+  height: 220px;
   width: 100%;
+  border: 1px solid green;
 }
 .row {
   width: 95%;
-  height: 23px;
-  margin: 7px;
+  height: 25px;
+  margin: 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,9 +135,9 @@ export default {
 }
 .Chart {
   position: absolute;
-  height: 220px;
+  height: 202px;
   width: 45%;
-  margin-right: 15px;
+  bottom: 3px;
 }
 .section {
   width: 25%;
