@@ -1,107 +1,103 @@
 <script>
 import { Radar } from 'vue-chartjs';
-import user from '../../assets/user.json';
 export default {
-  name: 'PentagonChart',
   extends: Radar,
-  mounted() {
-    this.renderChart(
-      {
+  methods: {
+    drawRadar() {
+      const chartData = {
         labels: [
-          '적극적인 Aggressive',
-          '자신있는 Confident',
-          '책임있는 Responsible',
-          '개인주의 Indivisual',
-          '수평적인 Horizontal',
+          ['적극적인', 'Aggressive'],
+          ['자신있는', 'Confident'],
+          ['책임있는', 'Responsible'],
+          ['개인주의', 'Indivisual'],
+          ['수평적인', 'Horizontal'],
         ],
         datasets: [
           {
-            label: '모두',
-            backgroundColor: 'green',
-            // borderColor: 'rgba(179,181,198,1)',
-            // pointBackgroundColor: 'rgba(179,181,198,1)',
-            // pointBorderColor: '#fff',
-            // pointHoverBackgroundColor: '#fff',
-            // pointHoverBorderColor: 'rgba(179,181,198,1)',
-            // borderJoinStyle: 'round',
-            // data: [8, 8, 7, 8, 4],
-            // onclick: () => {
-            //   console.log(1);
-            // },
-          },
-          {
-            label: '본인',
             backgroundColor: 'rgba(110, 60, 249, 0.32)',
-            borderColor: 'rgba(110, 60, 249, 1)',
-            pointBackgroundColor: 'rgba(110, 60, 249, 1)',
-            pointBorderColor: 'rgba(110, 60, 249, 1)',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(110, 60, 249, 1)',
-            pointBorderWidth: 0,
-            pointStyle: 'dash',
-            hitRadius: 0,
-            data: [6, 7, 4, 5, 7],
+            borderColor: '#6E3CF9',
+            borderWidth: 2,
+            borderRadius: 1,
+            pointBackgroundColor: 'rgba(255,99,132,1)',
+            pointRadius: 0,
+            pointHitRadius: 0,
+            order: 2,
+            data: [8, 10, 10, 3, 6],
           },
           {
-            label: '회사',
             backgroundColor: 'rgba(255, 193, 74, 0.32)',
-            borderColor: 'rgba(255, 211, 53, 1)',
-            pointBackgroundColor: 'rgba(255, 211, 53, 1)',
-            pointBorderColor: 'rgba(255, 211, 53, 1)',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(255, 211, 53, 1)',
-            borderJoinStyle: 'round',
-            pointStyle: 'dash',
-            data: [8, 8, 7, 8, 4],
+            borderColor: '#FFD335',
+            borderWidth: 2,
+            borderRadius: 1,
+            pointRadius: 0,
+            pointHitRadius: 0,
+            order: 1,
+            data: [7, 8, 6, 8, 4],
           },
-          // {
-          //   label: '회사',
-          //   backgroundColor: 'rgba(255, 193, 74, 0.32)',
-          //   borderColor: 'rgba(0, 0, 0, 0)',
-          //   borderWidth: 0,
-          //   pointBackgroundColor: 'red',
-          //   pointBorderColor: 'rgba(255, 211, 53, 1)',
-          //   pointHoverBackgroundColor: '#fff',
-          //   pointHoverBorderColor: 'rgba(255, 211, 53, 1)',
-          //   borderJoinStyle: 'round',
-          //   pointStyle: 'dash',
-          //   data: [0, 10, 0, 0, 0],
-          // },
+          {
+            backgroundColor: 'rgba(244, 244, 244, 0.32)',
+            borderColor: '#B2B2B2',
+            borderWidth: 1,
+            pointBackgroundColor: [
+              'rgba(237, 168, 154, 0.7)',
+              'rgba(182, 197, 248, 0.7)',
+              'rgba(164, 214, 227, 0.7)',
+              'rgba(238, 184, 207, 0.7)',
+              'rgba(183, 220, 171, 0.7)',
+            ],
+            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
+            pointRadius: 18,
+            data: [10, 10, 10, 10, 10],
+          },
         ],
-      },
-      {
+      };
+      return chartData;
+    },
+  },
+  data() {
+    return {
+      options: {
+        enabled: true,
         responsive: true,
-        maintainAspectRatio: false,
-        scale: {
-          ticks: {
-            display: false,
-            suggestedMin: 0,
-            suggestedMax: 10,
-            stepSize: 2,
-            callback: function (tick, index) {
-              return index === 3 ? { borderDash: [2] } : null;
-            },
-          },
-          gridLines: {
-            // callbacks: {
-            //   borderDash: function (context) {
-            //     return context.index === 3 ? [5, 5] : [];
-            //   },
-            // },
-            borderDash: [3, 2],
-            // borderDash[gridLines.ticks.length]: [5],
-            // zeroLineWidth: 16,
-            // zeroLineColor: 'rgba(255, 211, 53, 1)',
-          },
-        },
-        legend: {
-          position: 'bottom',
-        },
         tooltips: {
           enabled: false,
         },
-      }
-    );
+        maintainAspectRatio: false,
+        legend: {
+          display: false,
+        },
+        hover: false,
+        layout: {
+          padding: 10,
+        },
+        elements: {
+          point: {
+            hoverRadius: '18',
+          },
+        },
+        scale: {
+          pointLabels: {
+            fontFamily: 'Noto Sans',
+            fontStyle: 'bold',
+            fontColor: 'black',
+            fontSize: 12,
+            lineHeight: 1.5,
+          },
+          ticks: {
+            max: 10,
+            min: 0,
+            stepSize: 2.5,
+            display: false,
+          },
+          gridLines: {
+            borderDash: [5, 5],
+          },
+        },
+      },
+    };
+  },
+  mounted() {
+    this.renderChart(this.drawRadar(), this.options);
   },
 };
 </script>
