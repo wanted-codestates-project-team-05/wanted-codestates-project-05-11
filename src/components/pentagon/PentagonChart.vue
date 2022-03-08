@@ -1,79 +1,33 @@
 <script>
-import { Radar } from 'vue-chartjs';
-export default {
-  name: 'PentagonChart',
-  extends: Radar,
-  mounted() {
-    this.renderChart(
-      {
-        labels: [
-          '적극적인 Aggressive',
-          '자신있는 Confident',
-          '책임있는 Responsible',
-          '개인주의 Indivisual',
-          '수평적인 Horizontal',
-        ],
-        datasets: [
-          {
-            label: '모두',
-            backgroundColor: 'green',
-            // borderColor: 'rgba(179,181,198,1)',
-            // pointBackgroundColor: 'rgba(179,181,198,1)',
-            // pointBorderColor: '#fff',
-            // pointHoverBackgroundColor: '#fff',
-            // pointHoverBorderColor: 'rgba(179,181,198,1)',
-            // borderJoinStyle: 'round',
-            // data: [8, 8, 7, 8, 4],
-            // onclick: () => {
-            //   console.log(1);
-            // },
-          },
-          {
-            label: '본인',
-            backgroundColor: 'rgba(110, 60, 249, 0.32)',
-            borderColor: 'rgba(110, 60, 249, 1)',
-            pointBackgroundColor: 'rgba(110, 60, 249, 1)',
-            pointBorderColor: 'rgba(110, 60, 249, 1)',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(110, 60, 249, 1)',
-            pointBorderWidth: 0,
-            pointStyle: 'dash',
-            hitRadius: 0,
-            data: [6, 7, 4, 5, 7],
-          },
-          {
-            label: '회사',
-            backgroundColor: 'rgba(255, 193, 74, 0.32)',
-            borderColor: 'rgba(255, 211, 53, 1)',
-            pointBackgroundColor: 'rgba(255, 211, 53, 1)',
-            pointBorderColor: 'rgba(255, 211, 53, 1)',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(255, 211, 53, 1)',
-            borderJoinStyle: 'round',
-            pointStyle: 'dash',
-            data: [8, 8, 7, 8, 4],
-          },
-        ],
+  import { Radar, mixins } from 'vue-chartjs'
+  const { reactiveProp } = mixins;
+  
+
+  export default {
+    extends: Radar,
+    mixins: [reactiveProp],
+    props: {
+      chartdata: {
+        type: Object,
+        default: null
       },
-      {
-        responsive: true,
-        maintainAspectRatio: false,
-        scale: {
-          ticks: {
-            display: false,
-            suggestedMin: 0,
-            suggestedMax: 10,
-            stepSize: 2,
-            gridLines: {
-              borderDash: [10, 10],
-            },
-          },
-        },
-        legend: {
-          position: 'bottom',
-        },
+      options: {
+        type: Object,
+        default: null
       }
-    );
-  },
-};
+    },
+    watch: {
+      'chartdata' () {
+        this.render()
+      }
+    },
+    methods: {
+      render(){
+        this.renderChart(this.chartdata, this.options)
+      }
+    },
+    mounted () {
+      this.render()
+    }
+  }
 </script>
