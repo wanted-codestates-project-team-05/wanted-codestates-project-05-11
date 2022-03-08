@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import companyData from '../../assets/company.json';
+
 export default {
   name: 'search-input',
   model: {
@@ -16,16 +18,21 @@ export default {
   },
   data() {
     return {
-      names: ['카카오', '네이버'],
+      companyData,
     };
+  },
+  watch: {
+    item: function () {
+      console.log(this.item);
+    },
   },
   methods: {
     updateinput: function ($e) {
       if (!$e.target.value) return;
-      if (!this.names.includes($e.target.value)) {
+      if (!Object.keys(this.companyData).includes($e.target.value.toUpperCase())) {
         alert('기업을 찾을 수 없습니다.');
       } else {
-        this.$emit('keyup.enter', $e.target.value);
+        this.$emit('keyup.enter', $e.target.value.toUpperCase());
       }
       $e.target.value = '';
     },

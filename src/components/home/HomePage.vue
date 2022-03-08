@@ -1,8 +1,8 @@
 <template>
   <div id="home">
     <main-header />
-    <search-info v-model="company" />
-    <search-input v-model="company" />
+    <search-info v-model="companyName" />
+    <search-input v-model="companyName" />
     <div class="radar-chart">
       <PentagonChart :chartdata="chartData" :options="options" />
       <div class="bg-img"></div>
@@ -171,7 +171,7 @@ export default {
   },
   data() {
     return {
-      company: '',
+      companyName: '',
       isAll: true,
       isMe: false,
       isCompany: false,
