@@ -32,6 +32,7 @@ import SearchInfo from './SearchInfo.vue';
 import MainHeader from './MainHeader.vue';
 import BarChartContainer from '@/components/bar/BarChartContainer';
 import { userData, selectedCompany } from '@/assets/barData';
+import company from '../../assets/company.json';
 
 export default {
   name: 'HomePage',
@@ -41,6 +42,21 @@ export default {
     SearchInput,
     SearchInfo,
     BarChartContainer,
+  },
+  watch: {
+    companyName: function () {
+      const companyData = this.company[this.companyName];
+      let chartScore = [];
+      for (let key in companyData) {
+        chartScore.push(companyData[key]);
+      }
+      this.companyJsonData = chartScore;
+      console.log(chartScore);
+      console.log(companyData);
+    },
+    companyJsonData(){
+      this.allView();
+    }
   },
   methods: {
     allView() {
@@ -68,7 +84,8 @@ export default {
       this.chartData = {
         labels: this.setLabels,
         datasets: [this.meData, this.companyData],
-      };
+      }
+      this.chartData.datasets[1].data = this.companyJsonData;
     },
     makeMeData() {
       this.chartData = {
@@ -80,15 +97,17 @@ export default {
       this.chartData = {
         labels: this.setLabels,
         datasets: [this.companyData],
-      };
-      this.chartData.datasets[0].data = [2, 7, 4, 8, 9];
+      }
+      this.chartData.datasets[0].data = this.companyJsonData;
     },
   },
   data() {
     return {
+      company: company,
       companyName: '',
-      isAll: true,
-      isMe: false,
+      companyJsonData: [],
+      isAll: false,
+      isMe: true,
       isCompany: false,
       setPoint: {
         backgroundColor: 'rgba(244, 244, 244, 0.32)',
@@ -146,7 +165,7 @@ export default {
             backgroundColor: 'rgba(255, 193, 74, 0.32)',
             pointRadius: 0,
 
-            data: [1, 5, 4, 2, 6],
+            data: [],
           },
           {
             label: '1',
@@ -224,8 +243,8 @@ export default {
 
 <style>
 .radar-chart {
-  width: 400px;
-  height: 400px;
+  width: 90%;
+  height: 600px;
   margin: 0 auto;
   position: relative;
 }
@@ -264,7 +283,7 @@ img {
 .bg-img {
   position: absolute;
   left: 50%;
-  top: 54%;
+  top: 35%;
   transform: translate(-50%, -50%);
   background-image: url('../../assets/chart-bg.png');
   background-size: 54px 54px;
