@@ -76,8 +76,6 @@ export default {
 
   mounted() {
     this.renderChart(this.getData(this.chartValue, this.name), this.options);
-    // console.log(this.chartValue.company);
-    // console.log(this.num);
   },
 
   watch: {

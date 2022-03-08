@@ -1,28 +1,26 @@
 <template>
   <div class="wrapper">
     <header class="header">
-      <h4 class="title1">MY RESULT</h4>
-      <h1 class="title2">나의 결과는?</h1>
+      <h4 class="sub">MY RESULT</h4>
+      <h1 class="result">나의 결과는?</h1>
     </header>
     <ul class="container">
-      <li v-for="(list, index) in userObj" v-bind:key="list" class="itemRow">
+      <li class="row" v-for="(list, index) in userObj" v-bind:key="list">
         <span>
-          <span class="item" :style="[data.user[list] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]">
-            <span class="BigNum">{{ data.user[list] }}</span>
+          <span class="section" :style="[user[list] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]">
+            <span class="bigNum">{{ user[list] }}</span>
             <span>/{{ MAX_SCORE }}</span>
           </span>
-          <span :style="[data.user[list] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]"
+          <span :style="[user[list] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]"
             >{{ personalityArray[index][0] }}
           </span>
         </span>
         <span>
-          <span
-            class="item"
-            :style="[data.user[list] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]"
-            >{{ personalityArray[index][1] }}</span
-          >
-          <span :style="[data.user[list] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]">
-            <span class="BigNum">{{ MAX_SCORE - data.user[list] }}</span>
+          <span class="section" :style="[user[list] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]">{{
+            personalityArray[index][1]
+          }}</span>
+          <span :style="[user[list] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]">
+            <span class="bigNum">{{ MAX_SCORE - user[list] }}</span>
             <span>/{{ MAX_SCORE }}</span></span
           >
         </span>
@@ -35,6 +33,7 @@
 <script>
 import BarChart from './BarChart.vue';
 import Data from '../../assets/data.json';
+const user = Data.user;
 const userObj = [...Object.keys(Data.user)];
 const MAX_SCORE = 10;
 const personalityArray = [
@@ -51,20 +50,25 @@ export default {
   },
   data() {
     return {
-      MAX_SCORE,
+      user,
       userObj,
+      MAX_SCORE,
       personalityArray,
       data: Data,
       name: 'SAMSUNG',
     };
   },
   mounted() {
-    // console.log(this.data.user.aggressive);
+    console.log(this.user);
   },
 };
 </script>
 
 <style>
+:root {
+  --color-black: #121212;
+  --color-white: #ffffff;
+}
 .wrapper {
   position: relative;
   display: flex;
@@ -73,7 +77,7 @@ export default {
   width: 360px;
   height: 985px;
   margin: 0 auto;
-  border: 1px solid black;
+  border: 1px solid var(--color-black);
 }
 .header {
   position: absolute;
@@ -81,9 +85,9 @@ export default {
   height: 118px;
   left: 16px;
   top: 465px;
-  background: #ffffff;
+  background: var(--color-white);
 }
-.title1 {
+.sub {
   position: absolute;
   width: 328px;
   height: 17px;
@@ -96,9 +100,9 @@ export default {
   line-height: 140%;
   text-align: center;
   letter-spacing: 0.32em;
-  color: #121212;
+  color: var(--color-black);
 }
-.title2 {
+.result {
   position: absolute;
   width: 328px;
   height: 59px;
@@ -110,7 +114,7 @@ export default {
   font-size: 36px;
   line-height: 140%;
   text-align: center;
-  color: #121212;
+  color: var(--color-black);
 }
 .Chart {
   position: absolute;
@@ -127,7 +131,7 @@ export default {
   height: 220px;
   width: 100%;
 }
-.itemRow {
+.row {
   width: 320px;
   height: 23px;
   margin: 7px;
@@ -136,10 +140,10 @@ export default {
   font-size: 10px;
   font-weight: 600;
 }
-.item {
+.section {
   padding-right: 25px;
 }
-.BigNum {
+.bigNum {
   font-size: 14px;
   font-weight: 900;
 }
