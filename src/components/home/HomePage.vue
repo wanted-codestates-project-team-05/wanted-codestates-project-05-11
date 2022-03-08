@@ -20,7 +20,13 @@
           회사
         </button>
       </div>
-      <BarChartContainer v-bind:user-data-props="userData" v-bind:company-data="selectedCompany" />
+      <BarChartContainer
+        v-bind:user-data-props="userData"
+        v-bind:company-data="selectedCompany"
+        :isAll="this.isAll"
+        :isMe="this.isMe"
+        :isCompany="this.isCompany"
+      />
     </div>
   </div>
 </template>
