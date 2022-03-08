@@ -108,11 +108,11 @@ export default {
         data: [10, 10, 10, 10, 10],
       },
       setLabels: [
-        ["적극적인",	"Aggressive"],
-        ["자신있는", "Confident"],	
-        ["책임있는", "Responsible"],	
-        ["개인주의", "Indivisual"],
-        ["수평적인", "Horizontal"],	
+        ["적극적인", "Aggressive", ""],
+        [" 자신있는", "Confident", ""],
+        ["", "  책임있는", "Responsible"],
+        ["", "개인주의", "Indivisual"],
+        ["수평적인 ", "Horizontal", ""],
       ],
       meData: {
         label: '1',
@@ -134,11 +134,11 @@ export default {
       },
       chartData: {
         labels: [
-          ['적극적인', 'Aggressive'],
-          ['자신있는', 'Confident'],
-          ['책임있는', 'Responsible'],
-          ['개인주의', 'Indivisual'],
-          ['수평적인', 'Horizontal'],
+          ["적극적인", "Aggressive", ""],
+          [" 자신있는", "Confident", ""],
+          ["", "  책임있는", "Responsible"],
+          ["", "개인주의", "Indivisual"],
+          ["수평적인 ", "Horizontal", ""],
         ],
         datasets: [
           {
