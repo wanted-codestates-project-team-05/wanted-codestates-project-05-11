@@ -1,8 +1,8 @@
 <template>
   <div id="home">
     <main-header />
-    <search-info v-model="company" />
-    <search-input v-model="company" />
+    <search-info v-model="companyName" />
+    <search-input v-model="companyName" />
     <div class="radar-chart">
       <PentagonChart :chartdata="chartData" :options="options" />
       <div class="bg-img"></div>
@@ -82,9 +82,9 @@ export default {
   },
   data() {
     return {
-      company: '',
-      isAll: false,
-      isMe: true,
+      companyName: '',
+      isAll: true,
+      isMe: false,
       isCompany: false,
       setPoint: {
         backgroundColor: "rgba(244, 244, 244, 0.32)",
@@ -275,7 +275,8 @@ img {
 }
 #home {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  max-width: 360px;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
 }
