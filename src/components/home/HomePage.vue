@@ -23,6 +23,7 @@
       <BarChartContainer
         v-bind:user-data-props="userData"
         v-bind:company-data="selectedCompany"
+        v-bind:company-name="companyName"
         v-bind:view-type="viewType"
       />
     </div>

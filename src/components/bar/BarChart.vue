@@ -1,19 +1,20 @@
 <script>
-import { HorizontalBar, mixins } from 'vue-chartjs';
+import { HorizontalBar } from 'vue-chartjs';
 
 export default {
   extends: HorizontalBar,
-  mixins: [mixins.reactiveProp],
   props: {
     chartData: Object,
+    companyName: String,
     graphViewType: String,
   },
   mounted() {
     this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
   },
   watch: {
-    chartData() {
-      this.getData(this.chartData, this.graphViewType);
+    companyName() {
+      this.renderChart(this.getData(this.chartData), this.options, this.companyName);
+      console.log('chart', this.chartData);
     },
     graphViewType() {
       this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);
