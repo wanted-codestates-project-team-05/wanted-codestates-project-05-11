@@ -25,7 +25,12 @@
           >
         </span>
       </li>
-      <BarChart class="Chart" v-bind:chart-data="chartData" v-bind:company-name="selectedCompanyName" :graphViewType="graphViewType" />
+      <BarChart
+        class="Chart"
+        v-bind:chart-data="chartData"
+        v-bind:company-name="selectedCompanyName"
+        :graphViewType="graphViewType"
+      />
     </ul>
   </div>
 </template>
@@ -55,7 +60,6 @@ export default {
       this.graphViewType = this.viewType;
     },
   },
-  mounted() {},
   data() {
     return {
       MAX_SCORE,
@@ -69,8 +73,8 @@ export default {
       userData: this.userDataProps,
       chartData: { userData: this.userDataProps, companyData: this.companyData, maxScore: MAX_SCORE },
       scoreTypes: [...Object.keys(this.userDataProps)],
+      graphViewType: 'isMe',
       selectedCompanyName: this.companyName,
-      graphViewType: 'isAll',
     };
   },
 };
@@ -81,7 +85,6 @@ export default {
   --color-black: #121212;
   --color-white: #ffffff;
 }
-
 .wrapper {
   position: relative;
   display: flex;
@@ -91,7 +94,6 @@ export default {
   max-width: 800px;
   margin: 0 auto;
 }
-
 .header {
   display: flex;
   justify-content: center;
@@ -101,7 +103,6 @@ export default {
   top: 0px;
   height: 118px;
 }
-
 .sub {
   height: 17px;
   font-family: Agenor;
@@ -113,7 +114,6 @@ export default {
   letter-spacing: 0.32em;
   color: var(--color-black);
 }
-
 .result {
   height: 59px;
   font-family: Roboto;
@@ -124,7 +124,6 @@ export default {
   text-align: center;
   color: var(--color-black);
 }
-
 .container {
   display: flex;
   flex-direction: column;
@@ -135,7 +134,6 @@ export default {
   height: 220px;
   width: 100%;
 }
-
 .row {
   width: 95%;
   height: 25px;
@@ -146,21 +144,18 @@ export default {
   font-size: 10px;
   font-weight: 600;
 }
-
 .Chart {
   position: absolute;
   height: 202px;
   width: 45%;
   bottom: 3px;
 }
-
 .section {
   width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .bigNum {
   font-size: 14px;
   font-weight: 900;

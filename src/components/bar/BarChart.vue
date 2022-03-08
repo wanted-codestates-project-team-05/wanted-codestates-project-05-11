@@ -13,7 +13,7 @@ export default {
   },
   watch: {
     companyName() {
-      this.renderChart(this.getData(this.chartData), this.options, this.companyName);
+      this.renderChart(this.getData(this.chartData, this.graphViewType), this.options, this.companyName);
     },
     graphViewType() {
       this.renderChart(this.getData(this.chartData, this.graphViewType), this.options);

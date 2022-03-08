@@ -247,7 +247,7 @@ export default {
       userData: userData.user,
       selectedCompany: {},
       companyDataJson,
-      viewType: 'isAll',
+      viewType: 'isMe',
     };
   },
 };
