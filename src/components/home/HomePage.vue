@@ -92,7 +92,6 @@ export default {
   watch: {
     companyName: function () {
       this.selectedCompany = this.companyDataJson[this.companyName];
-      console.log(this.selectedCompany, 'home');
     },
   },
   data() {
@@ -227,7 +226,7 @@ export default {
         },
       },
       userData: userData.user,
-      selectedCompany: companyDataJson['KAKAO'],
+      selectedCompany: {},
       companyDataJson,
     };
   },

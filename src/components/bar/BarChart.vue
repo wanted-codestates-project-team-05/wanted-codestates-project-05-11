@@ -13,7 +13,6 @@ export default {
   watch: {
     companyName() {
       this.renderChart(this.getData(this.chartData), this.options, this.companyName);
-      console.log('chart', this.chartData);
     },
   },
   data() {
@@ -70,8 +69,10 @@ export default {
         );
       };
       const userGraphData = chartData.userData && makeGraphData(chartData.userData, chartData.maxScore);
-      console.log(chartData.companyData, 'chartData');
-      const companyGraphData = chartData.companyData && makeGraphData(chartData.companyData, chartData.maxScore);
+      const bool = true;
+      const companyGraphData = bool
+        ? chartData.companyData && makeGraphData(chartData.companyData, chartData.maxScore)
+        : [];
       const data = {
         labels: ['type1', 'type2', 'type3', 'type4', 'type5'],
         datasets: [
