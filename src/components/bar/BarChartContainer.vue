@@ -12,13 +12,13 @@
             <span>/{{ MAX_SCORE }}</span>
           </span>
           <span :style="[userData[scoreType] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]"
-            >{{ personalityType[index][0] }}
+          >{{ personalityType[index][0] }}
           </span>
         </span>
         <span class="section">
           <span :style="[userData[scoreType] >= 5 && { color: '#417341', fontWeight: 700, fontSize: '12px' }]">{{
-            personalityType[index][1]
-          }}</span>
+              personalityType[index][1]
+            }}</span>
           <span :style="[userData[scoreType] >= 5 && { color: '#29ba41', fontWeight: 700, fontSize: '12px' }]">
             <span class="bigNum">{{ MAX_SCORE - userData[scoreType] }}</span>
             <span>/{{ MAX_SCORE }}</span></span

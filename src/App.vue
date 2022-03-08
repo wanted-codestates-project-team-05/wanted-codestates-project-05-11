@@ -1,26 +1,16 @@
 <template>
   <div id="app">
-    <PentagonChart />
-    <BarChartContainer :user-data-props="userData" :company-data="selectedCompany"/>
+    <HomePage />
   </div>
 </template>
 
 <script>
-import PentagonChart from './components/pentagon/PentagonChart.vue';
-import BarChartContainer from '@/components/bar/BarChartContainer';
-import { userData, selectedCompany } from '@/assets/barData';
+import HomePage from '@/components/home/HomePage';
 
 export default {
   name: 'App',
   components: {
-    PentagonChart,
-    BarChartContainer,
-  },
-  data() {
-    return {
-      userData,
-      selectedCompany,
-    };
+    HomePage,
   },
 };
 </script>
