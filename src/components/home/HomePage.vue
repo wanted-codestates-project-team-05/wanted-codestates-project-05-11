@@ -84,9 +84,6 @@ export default {
       };
       this.chartData.datasets[0].data = [2, 7, 4, 8, 9];
     },
-    SelectCompany(companyName) {
-      this.selectedCompany = companyData[companyName];
-    },
   },
   data() {
     return {
