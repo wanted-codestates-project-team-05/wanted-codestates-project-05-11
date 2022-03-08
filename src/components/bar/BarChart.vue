@@ -25,9 +25,14 @@ export default {
           yAxes: [
             {
               gridLines: {
-                display: false,
+                display: true,
+                drawBorder: false,
+                lineWidth: 1,
+                color: 'darkGrey',
+                offsetGridLines: false,
               },
               ticks: {
+                display: false,
                 fontSize: 20,
                 beginAtZero: true,
               },
@@ -35,6 +40,11 @@ export default {
           ],
           xAxes: [
             {
+              gridLines: {
+                display: true,
+                lineWidth: 0,
+                drawBorder: false,
+              },
               ticks: {
                 display: false,
                 min: -10,
@@ -57,7 +67,7 @@ export default {
       const userGraphData = userData && makeGraphData(userData, maxScore);
       const companyGraphData = companyData && makeGraphData(companyData, maxScore);
       const data = {
-        labels: ['', '', '', '', ''],
+        labels: ['type1', 'type2', 'type3', 'type4', 'type5'],
         datasets: [
           {
             label: 'User',
