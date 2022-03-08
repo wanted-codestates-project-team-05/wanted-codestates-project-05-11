@@ -25,16 +25,11 @@
           >
         </span>
       </li>
-      <BarChart class="Chart" :chartValue="data" :name="this.name" />
     </ul>
   </div>
 </template>
 
 <script>
-import BarChart from './BarChart.vue';
-import Data from '../../assets/data.json';
-const user = Data.user;
-const userObj = [...Object.keys(Data.user)];
 const MAX_SCORE = 10;
 const personalityArray = [
   ['적극성', '수동성'],
@@ -45,17 +40,11 @@ const personalityArray = [
 ];
 export default {
   name: 'BarChartWrapper',
-  components: {
-    BarChart,
-  },
+  components: {},
   data() {
     return {
-      user,
-      userObj,
       MAX_SCORE,
       personalityArray,
-      data: Data,
-      name: 'SAMSUNG',
     };
   },
   mounted() {
