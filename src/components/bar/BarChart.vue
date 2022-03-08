@@ -13,18 +13,8 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        layout: {
-          padding: 0,
-        },
         legend: {
           display: false,
-        },
-        tooltips: {
-          callbacks: {
-            label: function (tooltipItem) {
-              return tooltipItem.yLabel;
-            },
-          },
         },
         scales: {
           yAxes: [
