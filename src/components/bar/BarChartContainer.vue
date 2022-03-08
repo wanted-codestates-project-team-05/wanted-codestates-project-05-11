@@ -76,7 +76,6 @@ export default {
   height: 320px;
   max-width: 800px;
   margin: 0 auto;
-  border: 1px solid var(--color-black);
 }
 .header {
   display: flex;
@@ -86,7 +85,6 @@ export default {
   position: absolute;
   top: 0px;
   height: 118px;
-  background: var(--color-white);
 }
 .sub {
   height: 17px;
@@ -118,7 +116,6 @@ export default {
   bottom: 0px;
   height: 220px;
   width: 100%;
-  border: 1px solid green;
 }
 .row {
   width: 95%;
