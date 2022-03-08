@@ -43,131 +43,42 @@ export default {
       this.isAll = true;
       this.isMe = false;
       this.isCompany = false;
-      this.chartData = {
-        labels: [
-          ['적극적인', 'Aggressive'],
-          ['자신있는', 'Confident'],
-          ['책임있는', 'Responsible'],
-          ['개인주의', 'Indivisual'],
-          ['수평적인', 'Horizontal'],
-        ],
-        datasets: [
-          {
-            label: '2',
-            borderWidth: 2,
-            borderColor: 'rgba(255, 193, 74, 1)',
-            backgroundColor: 'rgba(255, 193, 74, 0.32)',
-            pointRadius: 0,
-
-            data: [1, 5, 4, 2, 6],
-          },
-          {
-            label: '1',
-            borderWidth: 2,
-            borderColor: 'rgba(110, 60, 249, 1)',
-            backgroundColor: 'rgba(110, 60, 249, 0.32)',
-            pointRadius: 0,
-
-            data: [5, 7, 5, 6, 2],
-          },
-          {
-            backgroundColor: 'rgba(244, 244, 244, 0.32)',
-            borderColor: '#B2B2B2',
-            borderWidth: 1,
-            pointBackgroundColor: [
-              'rgba(237, 168, 154, 0.7)',
-              'rgba(182, 197, 248, 0.7)',
-              'rgba(164, 214, 227, 0.7)',
-              'rgba(238, 184, 207, 0.7)',
-              'rgba(183, 220, 171, 0.7)',
-            ],
-            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
-            pointRadius: 18,
-            data: [10, 10, 10, 10, 10],
-          },
-        ],
-      };
+      this.makeAllData();
+      this.chartData.datasets.push(this.setPoint);
     },
     meView() {
       this.isAll = false;
       this.isMe = true;
       this.isCompany = false;
-      this.chartData = {
-        labels: [
-          ['적극적인', 'Aggressive'],
-          ['자신있는', 'Confident'],
-          ['책임있는', 'Responsible'],
-          ['개인주의', 'Indivisual'],
-          ['수평적인', 'Horizontal'],
-        ],
-        datasets: [
-          {
-            label: '1',
-            borderWidth: 2,
-            borderColor: 'rgba(110, 60, 249, 1)',
-            backgroundColor: 'rgba(110, 60, 249, 0.32)',
-            pointRadius: 0,
-
-            data: [5, 7, 5, 6, 2],
-          },
-          {
-            backgroundColor: 'rgba(244, 244, 244, 0.32)',
-            borderColor: '#B2B2B2',
-            borderWidth: 1,
-            pointBackgroundColor: [
-              'rgba(237, 168, 154, 0.7)',
-              'rgba(182, 197, 248, 0.7)',
-              'rgba(164, 214, 227, 0.7)',
-              'rgba(238, 184, 207, 0.7)',
-              'rgba(183, 220, 171, 0.7)',
-            ],
-            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
-            pointRadius: 18,
-            data: [10, 10, 10, 10, 10],
-          },
-        ],
-      };
+      this.makeMeData();
+      this.chartData.datasets.push(this.setPoint);
     },
     componyView() {
       this.isAll = false;
       this.isMe = false;
       this.isCompany = true;
-      this.chartData = {
-        labels: [
-          ['적극적인', 'Aggressive'],
-          ['자신있는', 'Confident'],
-          ['책임있는', 'Responsible'],
-          ['개인주의', 'Indivisual'],
-          ['수평적인', 'Horizontal'],
-        ],
-        datasets: [
-          {
-            label: '2',
-            borderWidth: 2,
-            borderColor: 'rgba(255, 193, 74, 1)',
-            backgroundColor: 'rgba(255, 193, 74, 0.32)',
-            pointRadius: 0,
-
-            data: [1, 5, 4, 2, 6],
-          },
-          {
-            backgroundColor: 'rgba(244, 244, 244, 0.32)',
-            borderColor: '#B2B2B2',
-            borderWidth: 1,
-            pointBackgroundColor: [
-              'rgba(237, 168, 154, 0.7)',
-              'rgba(182, 197, 248, 0.7)',
-              'rgba(164, 214, 227, 0.7)',
-              'rgba(238, 184, 207, 0.7)',
-              'rgba(183, 220, 171, 0.7)',
-            ],
-            pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
-            pointRadius: 18,
-            data: [10, 10, 10, 10, 10],
-          },
-        ],
-      };
+      this.makeCompanyData();
+      this.chartData.datasets.push(this.setPoint);
     },
+    makeAllData() {
+      this.chartData = {
+        labels: this.setLabels,
+        datasets: [this.meData, this.companyData],
+      }
+    },
+    makeMeData() {
+      this.chartData = {
+        labels: this.setLabels,
+        datasets: [this.meData],
+      }
+    },
+    makeCompanyData() {
+      this.chartData = {
+        labels: this.setLabels,
+        datasets: [this.companyData],
+      }
+      this.chartData.datasets[0].data = [ 2, 7, 4, 8, 9 ];
+    }
   },
   data() {
     return {
@@ -175,15 +86,59 @@ export default {
       isAll: true,
       isMe: false,
       isCompany: false,
-      meData: [50, 70, 50, 60, 58],
-      companyData: [14, 16, 65, 42, 53],
+      setPoint: {
+        backgroundColor: "rgba(244, 244, 244, 0.32)",
+        borderColor: "#B2B2B2",
+        borderWidth: 1,
+        pointBackgroundColor: [
+          "rgba(237, 168, 154, 0.7)",
+          "rgba(182, 197, 248, 0.7)",
+          "rgba(164, 214, 227, 0.7)",
+          "rgba(238, 184, 207, 0.7)",
+          "rgba(183, 220, 171, 0.7)",
+        ],
+        pointBorderColor: [
+          "#EDA89A",
+          "#B6C5F8",
+          "#A4D6E3",
+          "#EEB8CF",
+          "#B7DCAB",
+        ],
+        pointRadius: 18,
+        data: [10, 10, 10, 10, 10],
+      },
+      setLabels: [
+        ["적극적인", "Aggressive", ""],
+        [" 자신있는", "Confident", ""],
+        ["", "  책임있는", "Responsible"],
+        ["", "개인주의", "Indivisual"],
+        ["수평적인 ", "Horizontal", ""],
+      ],
+      meData: {
+        label: '1',
+        borderWidth: 2,
+        borderColor: 'rgba(110, 60, 249, 1)',
+        backgroundColor: 'rgba(110, 60, 249, 0.32)',
+        pointRadius: 0,
+        
+        data: [ 5, 7, 5, 6, 2 ],
+      },
+      companyData: {
+        label: '2',
+        borderWidth: 2,
+        borderColor: 'rgba(255, 193, 74, 1)',
+        backgroundColor: 'rgba(255, 193, 74, 0.32)',
+        pointRadius: 0,
+        
+        data: [ ],
+      },
       chartData: {
         labels: [
-          ['적극적인', 'Aggressive'],
-          ['자신있는', 'Confident'],
-          ['책임있는', 'Responsible'],
-          ['개인주의', 'Indivisual'],
-          ['수평적인', 'Horizontal'],
+          ["적극적인", "Aggressive", ""],
+          [" 자신있는", "Confident", ""],
+          ["", "  책임있는", "Responsible"],
+          ["", "개인주의", "Indivisual"],
+          ["수평적인 ", "Horizontal", ""],
         ],
         datasets: [
           {
@@ -218,8 +173,8 @@ export default {
             pointBorderColor: ['#EDA89A', '#B6C5F8', '#A4D6E3', '#EEB8CF', '#B7DCAB'],
             pointRadius: 18,
             data: [10, 10, 10, 10, 10],
-          },
-        ],
+          }
+        ]
       },
       options: {
         responsive: true,
