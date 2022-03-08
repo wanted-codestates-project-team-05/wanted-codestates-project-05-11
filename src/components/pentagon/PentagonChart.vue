@@ -1,10 +1,20 @@
 <script>
 import { Radar, mixins } from 'vue-chartjs';
+import companyData from '../../assets/company.json';
 const { reactiveProp } = mixins;
 
+const data = companyData.KAKAO;
+
+const dataChart = [];
+for (let key in data) {
+  dataChart.push(data[key]);
+}
 export default {
   extends: Radar,
   mixins: [reactiveProp],
+  // data: () => {
+  //   company: company;
+  // },
   props: {
     chartdata: {
       type: Object,
@@ -14,6 +24,7 @@ export default {
       type: Object,
       default: null,
     },
+    company: String,
   },
   watch: {
     chartdata() {
@@ -27,6 +38,9 @@ export default {
   },
   mounted() {
     this.render();
+    console.log(data);
+    console.log(this.company);
+    console.log(dataChart);
   },
 };
 </script>
