@@ -40,6 +40,11 @@ import companyDataJson from '../../assets/company.json';
 import company from '../../assets/company.json';
 import userData from '../../assets/user.json';
 
+const userJsonData = [];
+for (let key in userData.user) {
+  userJsonData.push(userData.user[key]);
+}
+
 export default {
   name: 'HomePage',
   components: {
@@ -57,13 +62,11 @@ export default {
         chartScore.push(companyData[key]);
       }
       this.companyJsonData = chartScore;
-      console.log(chartScore);
-      console.log(companyData);
       this.selectedCompany = this.companyDataJson[this.companyName];
     },
-    companyJsonData(){
+    companyJsonData() {
       this.allView();
-    }
+    },
   },
   methods: {
     allView() {
@@ -94,7 +97,7 @@ export default {
       this.chartData = {
         labels: this.setLabels,
         datasets: [this.meData, this.companyData],
-      }
+      };
       this.chartData.datasets[1].data = this.companyJsonData;
     },
     makeMeData() {
@@ -107,7 +110,7 @@ export default {
       this.chartData = {
         labels: this.setLabels,
         datasets: [this.companyData],
-      }
+      };
       this.chartData.datasets[0].data = this.companyJsonData;
     },
   },
@@ -148,7 +151,7 @@ export default {
         backgroundColor: 'rgba(110, 60, 249, 0.32)',
         pointRadius: 0,
 
-        data: [5, 7, 5, 6, 2],
+        data: userJsonData,
       },
       companyData: {
         label: '2',
@@ -184,7 +187,7 @@ export default {
             backgroundColor: 'rgba(110, 60, 249, 0.32)',
             pointRadius: 0,
 
-            data: [5, 7, 5, 6, 2],
+            data: userJsonData,
           },
           {
             backgroundColor: 'rgba(244, 244, 244, 0.32)',
