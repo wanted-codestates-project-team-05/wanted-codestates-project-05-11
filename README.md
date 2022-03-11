@@ -31,7 +31,7 @@ npm run start
 
 # 배포 링크
 
-<과제1><https://wanted-codestates-project-05-05-01.vercel.app/><br>
+<과제1>https://wanted-codestates-project-team-05-11.vercel.app/ <br>
 
 # 구현 내용
 
